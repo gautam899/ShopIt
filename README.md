@@ -44,7 +44,40 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
     https://github.com/gautam899/ShopIt.git
 
 ### Go to the root directory.
-    1. cd e-commerce
+cd e-commerce
+
+### Install dependencies in frontend
+    1 cd frontend
+    2. npm install
+### Install dependencies in the backend
+    1 cd backend
+    2. npm install
+### Install dependencies in admin
+    1 cd admin
+    2. npm install
+
+### set-up the environment in the frontend
+    VITE_BACKEND_URL="Your_backend_URL"
+    STRIPE_PUBLISHABLE_KEY="Your_Stripe_Key"
+    VITE_RAZORPAY_KEY=""
+    
+### set-up the environment in the backend
+    MONGODB_URI="YOUR_MONGO_URI"
+    CLOUDINARY_API_KEY="YOUR_CLOUDINARY_API_KEY"
+    CLOUDINARY_API_SECRET="YOUR_CLOUDINARY_SECRET_KEY"
+    CLOUDINARY_CLOUD_NAME="YOUR_CLOUDINARY_CLOUD_NAME"
+    SECRET_KEY="YOUR_JWT_SECRET_KEY"
+    ADMIN_EMAIL="EMAIL_OF_YOUR_CHOICE"
+    ADMIN_PASSWORD="PASSWORD_OF_YOUR_CHOICE"
+    EMAIL="YOUR_EMAIL_FOR_NODEMAILER"
+    APP_PASSWORD_EMAIL="APP_PASSWORD_FOR_NODEMAILER"
+    STRIPE_SECRET_KEY="STRIPE_SECRET_KEY"
+    RAZORPAY_KEY=""
+    RAZORPAY_SECRET_KEY=""
+    FRONTEND_URL="FRONT_END_URL"
+    EMAIL_VERIFICATION_SECRET="A_SECRET_KEY_OF_YOUR_CHOICE_FOR_EMAIL_VERIFICATION_DURING_REGISTRATION"
+    
+
 
 
 
