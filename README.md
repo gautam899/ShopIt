@@ -105,6 +105,22 @@ The URL's can be adjusted as per your preference.
 # Author
 [@bhavyagautam](https://github.com/gautam899)
 
+# Screenshots
+
+![image](https://github.com/user-attachments/assets/bbe5863f-9815-4793-9408-6828955441fe)
+
+![image](https://github.com/user-attachments/assets/b5cadbc9-2a12-428c-8fe9-ed5b0589d0ec)
+
+![image](https://github.com/user-attachments/assets/ce418370-d20f-4204-86ed-cb16c7432492)
+
+![image](https://github.com/user-attachments/assets/56b78042-08db-422c-9b68-30616a3bdfa1)
+
+![image](https://github.com/user-attachments/assets/145d2232-7b63-4288-8094-7dc68feec6be)
+
+
+
+
+
 
 
 
