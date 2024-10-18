@@ -90,7 +90,10 @@ Make sure you have nodemon installed globally.
 ### Navigate to the frontend
     cd frontend
     npm run dev
-
+### Navigate to the admin
+    cd admin
+    npm run dev
+    
 #### Frontend URL:  http://localhost:5173/
 #### Backend_URL:  http://localhost:4000/
 
@@ -100,7 +103,7 @@ The URL's can be adjusted as per your preference.
 ### Don't forget to star the repo if you like it. 
 
 # Author
-
+@https://github.com/gautam899
 
 
 
