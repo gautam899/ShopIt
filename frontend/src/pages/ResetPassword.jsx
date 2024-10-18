@@ -58,14 +58,14 @@ const ResetPassword = () => {
         </p>
         <hr className="h-[2px] bg-black w-11 my-auto" />
       </div>
-      <div className="flex dark_input">
+      <div className="flex justify-center border dark_input border-gray-900 items-center w-full">
         <input
           id="password"
           type={type}
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           placeholder="Enter your new Password"
-          className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
+          className="w-full px-4 py-2 border border-none outline-none dark_input "
           required
         />
         <span
@@ -79,14 +79,14 @@ const ResetPassword = () => {
           )}
         </span>
       </div>
-      <div className="flex dark_input">
+      <div className="flex justify-center border dark_input border-gray-900 items-center w-full">
         <input
           id="confirm_password"
           type={type}
           onChange={(e) => setConfirmPassword(e.target.value)}
           value={confirmPassword}
           placeholder="Confirm Your Password"
-          className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
+          className="w-full px-4 py-2 border border-none outline-none dark_input "
           required
         />
         <span
