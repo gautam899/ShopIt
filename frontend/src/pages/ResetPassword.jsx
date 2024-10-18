@@ -9,6 +9,7 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const { backend_url, navigate } = useContext(ShopContext);
   const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(assets.eye_close);
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -42,8 +43,10 @@ const ResetPassword = () => {
   };
   const handleToggle = () => {
     if (type === "password") {
+      setIcon(assets.eye_close);
       setType("text");
     } else {
+      setIcon(assets.eye_open);
       setType("password");
     }
   };
@@ -72,11 +75,7 @@ const ResetPassword = () => {
           onClick={handleToggle}
           className="cursor-pointer flex items-center px-2"
         >
-          {type === "password" ? (
-            <img src={assets.eye_close} alt="" className="w-5 password_icon" />
-          ) : (
-            <img src={assets.eye_open} alt="" className="w-5 password_icon" />
-          )}
+          <img src={icon} alt="" className="w-5 password_icon" />
         </span>
       </div>
       <div className="flex justify-center border dark_input border-gray-900 items-center w-full">
@@ -93,11 +92,7 @@ const ResetPassword = () => {
           onClick={handleToggle}
           className="cursor-pointer flex items-center px-2"
         >
-          {type === "password" ? (
-            <img src={assets.eye_close} alt="" className="w-5 password_icon" />
-          ) : (
-            <img src={assets.eye_open} alt="" className="w-5 password_icon" />
-          )}
+          <img src={icon} alt="" className="w-5 password_icon" />
         </span>
       </div>
 
