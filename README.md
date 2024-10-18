@@ -103,7 +103,7 @@ The URL's can be adjusted as per your preference.
 ### Don't forget to star the repo if you like it. 
 
 # Author
-[@vhavyagautam](https://github.com/gautam899)
+[@bhavyagautam](https://github.com/gautam899)
 
 
 
