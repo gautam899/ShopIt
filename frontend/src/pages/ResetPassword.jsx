@@ -3,12 +3,12 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { ShopContext } from "../context/ShopContext";
-
+import { assets } from "../assets/assets";
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { backend_url, navigate } = useContext(ShopContext);
-
+  const [type, setType] = useState("password");
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -40,6 +40,13 @@ const ResetPassword = () => {
       toast(error.message);
     }
   };
+  const handleToggle = () => {
+    if (type === "password") {
+      setType("text");
+    } else {
+      setType("password");
+    }
+  };
   return (
     <form
       onSubmit={onSubmitHandler}
@@ -51,25 +58,48 @@ const ResetPassword = () => {
         </p>
         <hr className="h-[2px] bg-black w-11 my-auto" />
       </div>
-
-      <input
-        id="password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        placeholder="Enter your new Password"
-        className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
-        required
-      />
-      <input
-        id="confirm_password"
-        type="password"
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        value={confirmPassword}
-        placeholder="Confirm Your Password"
-        className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
-        required
-      />
+      <div className="flex dark_input">
+        <input
+          id="password"
+          type={type}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          placeholder="Enter your new Password"
+          className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
+          required
+        />
+        <span
+          onClick={handleToggle}
+          className="cursor-pointer flex items-center px-2"
+        >
+          {type === "password" ? (
+            <img src={assets.eye_close} alt="" className="w-5 password_icon" />
+          ) : (
+            <img src={assets.eye_open} alt="" className="w-5 password_icon" />
+          )}
+        </span>
+      </div>
+      <div className="flex dark_input">
+        <input
+          id="confirm_password"
+          type={type}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={confirmPassword}
+          placeholder="Confirm Your Password"
+          className="w-full px-4 py-2 border border-gray-900 outline-none dark_input "
+          required
+        />
+        <span
+          onClick={handleToggle}
+          className="cursor-pointer flex items-center px-2"
+        >
+          {type === "password" ? (
+            <img src={assets.eye_close} alt="" className="w-5 password_icon" />
+          ) : (
+            <img src={assets.eye_open} alt="" className="w-5 password_icon" />
+          )}
+        </span>
+      </div>
 
       <button className="py-2 bg-[#39ac73] text-center w-full text-white text-xl font-medium tracking-wide">
         Reset Password

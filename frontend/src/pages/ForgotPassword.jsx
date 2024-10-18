@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const { backend_url } = useContext(ShopContext);
   const onSubmitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
       await axios.post(`${backend_url}/api/user/forgotPassword`, { email });
       toast.success("Password reset link sent to your email");

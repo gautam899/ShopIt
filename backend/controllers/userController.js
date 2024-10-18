@@ -270,7 +270,7 @@ const forgotPasswordController = async (req, res) => {
       `,
     };
 
-    //Send email
+    //Send email 
     await transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         return res.status(500).json({ message: err.message });
