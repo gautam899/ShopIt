@@ -46,20 +46,20 @@ const ResetPassword = () => {
     }
   };
   const handlePasswordToggle = () => {
-    if (confirmPasswordType === "password") {
-      setPasswordIcon(assets.eye_close);
+    if (passwordType === "password") {
+      setPasswordIcon(assets.eye_open);
       setPasswordType("text");
     } else {
-      setPasswordIcon(assets.eye_open);
+      setPasswordIcon(assets.eye_close);
       setPasswordType("password");
     }
   };
   const handleConfirmPasswordToggle = () => {
     if (confirmPasswordType === "password") {
-      setConfirmPasswordIcon(assets.eye_close);
+      setConfirmPasswordIcon(assets.eye_open);
       setConfirmPasswordType("text");
     } else {
-      setConfirmPasswordIcon(assets.eye_open);
+      setConfirmPasswordIcon(assets.eye_close);
       setConfirmPasswordType("password");
     }
   };
