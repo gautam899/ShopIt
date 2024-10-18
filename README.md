@@ -15,6 +15,7 @@
 6. Create product reviews by giving them a rating out of 5 and a comment of your choice.
 7. Search products with keywords using a search bar
 8. Add products to the cart, update quantity, and select size.
-9. Various Payment checkout methods like COD, Stripe, and Razorpay(do not work because creating an account was hectic.).
+9. Various Payment checkout methods like COD, Stripe, and Razorpay(do not work because creating an account is hectic.).
 10. Customized orders page where the user can see their orders or check the status. The track order feature is not available.
 11. Personalized wishlist user. Users can add or remove items from the wishlist.
+12. Light and Dark mode toggle using Tailwind CSS.
