@@ -1,7 +1,9 @@
 # MERN stack E-Commerce Website.
+MERN Ecommerce is a full-stack application designed to transform your online shopping experience. Built with the MERN stack (MongoDB, Express.js, React, Node.js). This project offers a robust platform for both users and admins, packed with essential features for a seamless experience.
 
 ![image](https://github.com/user-attachments/assets/44642a6c-de4e-43f0-90e5-bf669ca06b73)
 
+![image](https://github.com/user-attachments/assets/aaefee2d-05ec-45db-aff2-4df81ba1fe07)
 
 ## Tech Stack Used
 1. MongoDB for database
@@ -22,3 +24,5 @@
 10. Customized orders page where the user can see their orders or check the status. The track order feature is not available.
 11. Personalized wishlist user. Users can add or remove items from the wishlist.
 12. Light and Dark mode toggle using Tailwind CSS.
+
+## How to start.
