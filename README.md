@@ -12,6 +12,7 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
 4. NodeJs
 
 ## Features
+
 1. Registration of user with Email verification using nodemailer.
 2. Forgot your password, no worries. Reset password functionality using nodemailer.
 3. Fully responsive with impressive user experience on mobile and even larger screens. 
