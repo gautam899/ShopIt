@@ -41,3 +41,7 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
 2. Mongodb running locally.
 
 ### Clone the project
+    https://github.com/gautam899/ShopIt.git
+
+
+
