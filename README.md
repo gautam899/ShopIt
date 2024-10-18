@@ -43,5 +43,8 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
 ### Clone the project
     https://github.com/gautam899/ShopIt.git
 
+### Go to the root directory.
+    1. cd e-commerce
+
 
 
