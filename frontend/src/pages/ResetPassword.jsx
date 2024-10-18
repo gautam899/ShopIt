@@ -8,8 +8,12 @@ const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { backend_url, navigate } = useContext(ShopContext);
-  const [type, setType] = useState("password");
-  const [icon, setIcon] = useState(assets.eye_close);
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  const [passwordIcon, setPasswordIcon] = useState(assets.eye_close);
+  const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(
+    assets.eye_close
+  );
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -41,13 +45,22 @@ const ResetPassword = () => {
       toast(error.message);
     }
   };
-  const handleToggle = () => {
-    if (type === "password") {
-      setIcon(assets.eye_close);
-      setType("text");
+  const handlePasswordToggle = () => {
+    if (confirmPasswordType === "password") {
+      setPasswordIcon(assets.eye_close);
+      setPasswordType("text");
     } else {
-      setIcon(assets.eye_open);
-      setType("password");
+      setPasswordIcon(assets.eye_open);
+      setPasswordType("password");
+    }
+  };
+  const handleConfirmPasswordToggle = () => {
+    if (confirmPasswordType === "password") {
+      setConfirmPasswordIcon(assets.eye_close);
+      setConfirmPasswordType("text");
+    } else {
+      setConfirmPasswordIcon(assets.eye_open);
+      setConfirmPasswordType("password");
     }
   };
   return (
@@ -64,7 +77,7 @@ const ResetPassword = () => {
       <div className="flex justify-center border dark_input border-gray-900 items-center w-full">
         <input
           id="password"
-          type={type}
+          type={passwordType}
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           placeholder="Enter your new Password"
@@ -72,16 +85,16 @@ const ResetPassword = () => {
           required
         />
         <span
-          onClick={handleToggle}
+          onClick={handlePasswordToggle}
           className="cursor-pointer flex items-center px-2"
         >
-          <img src={icon} alt="" className="w-5 password_icon" />
+          <img src={passwordIcon} alt="" className="w-5 password_icon" />
         </span>
       </div>
       <div className="flex justify-center border dark_input border-gray-900 items-center w-full">
         <input
           id="confirm_password"
-          type={type}
+          type={confirmPasswordType}
           onChange={(e) => setConfirmPassword(e.target.value)}
           value={confirmPassword}
           placeholder="Confirm Your Password"
@@ -89,10 +102,10 @@ const ResetPassword = () => {
           required
         />
         <span
-          onClick={handleToggle}
+          onClick={handleConfirmPasswordToggle}
           className="cursor-pointer flex items-center px-2"
         >
-          <img src={icon} alt="" className="w-5 password_icon" />
+          <img src={confirmPasswordIcon} alt="" className="w-5 password_icon" />
         </span>
       </div>
 
