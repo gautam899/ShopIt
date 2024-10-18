@@ -264,7 +264,7 @@ const forgotPasswordController = async (req, res) => {
       html: `
       <h1>Reset Your Password</h1>
     <p>Click on the following link to reset your password:</p>
-    <a href="http://localhost:5173/reset-password/${secret_token}">http://localhost:5173/reset-password/${secret_token}</a>
+    <a href="${process.env.FRONTEND_URL}/reset-password/${secret_token}">${process.env.FRONTEND_URL}/reset-password/${secret_token}</a>
     <p>The link will expire in 10 minutes.</p>
     <p>If you didn't request a password reset, please ignore this email.</p>
       `,
