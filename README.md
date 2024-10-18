@@ -96,6 +96,11 @@ Make sure you have nodemon installed globally.
 
 The URL's can be adjusted as per your preference.
 
+# Bonus
+### Don't forget to star the repo if you like it. 
+
+# Author
+
 
 
 
