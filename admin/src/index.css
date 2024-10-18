@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: Outfit;
+}
+.active {
+  background-color: #9f9797;
+}
+
+@layer components {
+  .dark_text {
+    @apply dark:text-white;
+  }
+  .delete-icon {
+    filter: invert(0%);
+  }
+  .dark .delete_icon {
+    filter: invert(100%);
+  }
+  .password_icon {
+    filter: invert(0%);
+  }
+  .dark .password_icon {
+    filter: invert(100%);
+  }
+  .add-icon {
+    filter: invert(0%);
+  }
+  .dark .add_icon {
+    filter: invert(100%);
+  }
+  .dark_sun {
+    filter: invert(0%);
+  }
+  .dark .dark_sun {
+    filter: invert(100%);
+  }
+  .list-icon {
+    filter: invert(0%);
+  }
+  .dark .list_icon {
+    filter: invert(100%);
+  }
+  .order-icon {
+    filter: invert(0%);
+  }
+  .dark .order_icon {
+    filter: invert(100%);
+  }
+  .upload_image {
+    filter: invert(0%);
+  }
+  .dark .upload_image {
+    filter: invert(100%);
+  }
+  .dark_button {
+    @apply dark:bg-blue-500 dark:text-white dark:border-none;
+  }
+  .dark_input {
+    @apply dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white;
+  }
+}

@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+a.active hr {
+  display: block;
+}
+* {
+  font-family: Outfit;
+}
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
+}
+@layer base {
+  .dark svg {
+    fill: #ffffff;
+  }
+}
+@layer components {
+  .dark_head {
+    @apply dark:text-white;
+  }
+  .dark_text {
+    @apply dark:text-gray-400;
+  }
+  .dark_hr {
+    @apply dark:bg-white;
+  }
+  .dark_main {
+    @apply dark:text-[#fcb103];
+  }
+  .dark_button {
+    @apply dark:bg-blue-500 dark:text-white;
+  }
+  .dark_input {
+    @apply dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white;
+  }
+  .dark_logo {
+    @apply dark:bg-[url('/assets/dark_logo.png')];
+  }
+  .dark_input {
+    @apply dark:border ;
+  }
+  .dark_pay {
+    @apply dark:bg-white dark:text-black;
+  }
+
+  .cart-icon {
+    filter: invert(0%);
+  }
+  .dark .cart-icon {
+    filter: invert(100%);
+  }
+  .search-icon {
+    filter: invert(0%);
+  }
+  .dark .search-icon {
+    filter: invert(100%);
+  }
+  .user-icon {
+    filter: invert(0%);
+  }
+  .dark .user-icon {
+    filter: invert(100%);
+  }
+  .move-wishlist {
+    filter: invert(0%);
+  }
+  .dark .move-wishlist {
+    filter: invert(100%);
+  }
+  .delete-cart {
+    filter: invert(0%);
+  }
+  .dark .delete-cart {
+    filter: invert(100%);
+  }
+  .menu-icon {
+    filter: invert(0%);
+  }
+  .dark .menu-icon {
+    filter: invert(100%);
+  }
+  .down-arrow {
+    filter: invert(0%);
+  }
+  .dark .down-arrow {
+    filter: invert(100%);
+  }
+  .dark_sun {
+    filter: invert(0%);
+  }
+  .dark .dark_sun {
+    filter: invert(100%);
+  }
+  .password-icon {
+    filter: invert(0%);
+  }
+  .dark .password-icon {
+    filter: invert(100%);
+  }
+}
