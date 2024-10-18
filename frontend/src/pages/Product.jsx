@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import Title from "../components/Title";
 import ReviewCard from "../components/ReviewCard";
-import DisplayReview from "../components/displayReview";
+import DisplayReview from "../components/DisplayReview";
 
 const Product = () => {
   const { products, currency, addCartItem, navigate } = useContext(ShopContext);
@@ -73,10 +73,13 @@ const Product = () => {
           </div>
 
           <div className="flex justify-center items-center overflow-hidden h-full">
-            <img src={image} className="w-full h-[100%] object-cover" alt="Image" />
+            <img
+              src={image}
+              className="w-full h-[100%] object-cover"
+              alt="Image"
+            />
           </div>
         </div>
-        
 
         {/* The product title etc.. */}
         <div className="flex-1">
