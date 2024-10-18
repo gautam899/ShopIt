@@ -56,12 +56,12 @@ cd e-commerce
     1 cd admin
     2. npm install
 
-### set-up the environment in the frontend
+### Set up the environment in the frontend
     VITE_BACKEND_URL="Your_backend_URL"
     STRIPE_PUBLISHABLE_KEY="Your_Stripe_Key"
     VITE_RAZORPAY_KEY=""
     
-### set-up the environment in the backend
+### Set up the environment in the backend
     MONGODB_URI="YOUR_MONGO_URI"
     CLOUDINARY_API_KEY="YOUR_CLOUDINARY_API_KEY"
     CLOUDINARY_API_SECRET="YOUR_CLOUDINARY_SECRET_KEY"
@@ -76,7 +76,27 @@ cd e-commerce
     RAZORPAY_SECRET_KEY=""
     FRONTEND_URL="FRONT_END_URL"
     EMAIL_VERIFICATION_SECRET="A_SECRET_KEY_OF_YOUR_CHOICE_FOR_EMAIL_VERIFICATION_DURING_REGISTRATION"
-    
+
+### Set up the environment in the frontend
+    VITE_BACKEND_URL="Your_backend_URL"
+
+## Run the project.
+   
+### Navigate to the backend directory.
+    cd backend
+    nodemon server.js
+Make sure you have nodemon installed globally.
+
+### Navigate to the frontend
+    cd frontend
+    npm run dev
+
+Frontend URL:  http://localhost:5173/
+Backend_URL:  http://localhost:4000/
+
+The URL's can be adjusted as per your preference.
+
+
 
 
 
