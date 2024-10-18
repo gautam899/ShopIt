@@ -1,5 +1,8 @@
 # MERN stack E-Commerce Website.
 
+![image](https://github.com/user-attachments/assets/44642a6c-de4e-43f0-90e5-bf669ca06b73)
+
+
 ## Tech Stack Used
 1. MongoDB for database
 2. Express
