@@ -34,4 +34,4 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
 1. Email verification before registration.
 2. Forgot password functionality implemented using nodemailer.
 
-## How to start.
+### How to start.
