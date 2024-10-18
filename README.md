@@ -26,4 +26,12 @@ MERN Ecommerce is a full-stack application designed to transform your online sho
 11. Personalized wishlist user. Users can add or remove items from the wishlist.
 12. Light and Dark mode toggle using Tailwind CSS.
 
+# Admin:
+1. Add products and delete products from the database.
+2. See and edit the order status of all the user orders placed.
+
+# Security:
+1. Email verification before registration.
+2. Forgot password functionality implemented using nodemailer.
+
 ## How to start.
