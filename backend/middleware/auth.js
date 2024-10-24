@@ -14,7 +14,7 @@ const authUser = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.body.userId = decoded.id; //we add user id to the token while creating the token during the login. So we need to set this userId
     // console.log("Congratulation you are authorized to proceed");
-
+ 
     next();
   } catch (error) {
     //If any error occurs then we will console log the error.

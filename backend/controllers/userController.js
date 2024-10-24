@@ -2,6 +2,7 @@
 // Route for user login
 
 import userModel from "../models/userModel.js";
+import { v2 as cloudinary } from "cloudinary";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import jwt from "jsonwebtoken";
@@ -31,7 +32,11 @@ const loginUser = async (req, res) => {
       (await bcrypt.compare(password, existingUser.password))
     ) {
       const token = createToken(existingUser._id);
-      res.status(200).json({ message: "Token Created Successfully.", token });
+      res.status(200).json({
+        message: "Token Created Successfully.",
+        token,
+        userId: existingUser._id,
+      });
     } else {
       return res.status(404).json({ message: "Invalid Credentials" });
     }
@@ -108,7 +113,16 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, gender } = req.body;
+    const image = req.files.image && req.files.image;
+    let imageURL = await Promise.all(
+      image.map(async (img) => {
+        let result = await cloudinary.uploader.upload(img.path, {
+          resource_type: "image",
+        });
+        return result.secure_url;
+      })
+    );
 
     const userExist = await userModel.findOne({ email });
     if (userExist) {
@@ -127,7 +141,9 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new userModel({
       name,
+      imageURL,
       email,
+      gender,
       password: hashedPassword,
       isVerified: false,
     });
@@ -212,14 +228,12 @@ const verifyEmail = async (req, res) => {
 // Controller for admin login
 const adminLogin = async (req, res) => {
   try {
-    // console.log("Hi this is the admin controller");
     const { email, password } = req.body;
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.SECRET_KEY);
-      console.log("Welcome Admin");
       res.status(200).json({ token });
     } else {
       res.status(500).json({ message: "Invalid Credientials" });
@@ -270,7 +284,7 @@ const forgotPasswordController = async (req, res) => {
       `,
     };
 
-    //Send email 
+    //Send email
     await transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         return res.status(500).json({ message: err.message });
@@ -311,6 +325,55 @@ const resetPasswordController = async (req, res) => {
   }
 };
 
+const getUserData = async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const response = await userModel.findById(userId).select("-password");
+    if (!response) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "User data", response });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Something went wrong", error: error });
+  }
+};
+
+const updateProfile = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await userModel.findById(userId);
+    if (!userId) {
+      res.status(404).json({ message: "User not found" });
+    }
+    const { name = user.name, gender = user.gender } = req.body;
+    let imageURL;
+    if (req.files && req.files.image) {
+      const image = req.files.image;
+      try {
+        const cloudinaryResult = await cloudinary.uploader.upload(image.path, {
+          resource_type: "image",
+        });
+        imageURL = cloudinaryResult.secure_url;
+      } catch (error) {
+        console.error("Error uploading image to Cloudinary:", error);
+        return res.status(500).json({ message: "Image upload failed" });
+      }
+    } else {
+      imageURL = user.imageURL;
+    }
+
+    user.name = name;
+    user.gender = gender;
+    user.imageURL = imageURL;
+    await user.save();
+    res.status(200).json({ message: "Profile Update Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
 export {
   loginUser,
   registerUser,
@@ -318,4 +381,6 @@ export {
   resetPasswordController,
   forgotPasswordController,
   verifyEmail,
+  getUserData,
+  updateProfile,
 };

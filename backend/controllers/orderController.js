@@ -10,7 +10,6 @@ const currency = "usd";
 const getAllOrders = async (req, res) => {
   try {
     const response = await orderModel.find({});
-    console.log(response);
     res.status(200).json({ message: "Orders fetched successfully", response });
   } catch (error) {
     console.log(error.message);
@@ -53,7 +52,6 @@ const placeOrderCOD = async (req, res) => {
 const placeOrderStripe = async (req, res) => {
   try {
     const { userId, items, address, amount } = req.body;
-    console.log("Request Body:", req.body);
     if (!amount || !address) {
       return res
         .status(400)
@@ -72,7 +70,6 @@ const placeOrderStripe = async (req, res) => {
     });
     await newOrder.save(); //we will be intially saving the order. If somehow the
     //stripe payment fails in the future we will just remove the orderId from the database.
-
     const line_items = items.map((item) => ({
       price_data: {
         currency: currency,
@@ -107,6 +104,7 @@ const placeOrderStripe = async (req, res) => {
       .json({ message: "Order Placed Successfully", session_url: session.url });
   } catch (error) {
     console.log("Something went wrong in the stripe controller", error.message);
+
     res.status(500).json({
       message: "Something went wrong in the stripe controller",
       error: error.message,
@@ -121,14 +119,20 @@ const verifyStripe = async (req, res) => {
     if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
-      console.log("Stripe payment successfull");
-      res.status(200).json({ message: "Verify stripe Successfull" });
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+      res.status(200).json({ message: "Stripe Payment Successfull" });
     } else {
       await orderModel.findByIdAndDelete(orderId);
-      res.status(500).json({ message: "Stripe Payment Failed" });
+      res.json({ message: "Stripe Payment Failed" });
     }
   } catch (error) {
     console.log(error.message);
+    // try {
+    //   await orderModel.findByIdAndDelete(orderId);
+    // } catch (deleteError) {
+    //   console.error("Failed to delete order after error:", deleteError);
+    // }
     res.status(500).json({ message: error.message });
   }
 };
@@ -137,7 +141,6 @@ const verifyStripe = async (req, res) => {
 const placeOrderRazorpay = async (req, res) => {
   try {
     const { userId, items, address, amount } = req.body;
-    console.log("Request Body:", req.body);
     if (!amount || !address) {
       return res
         .status(400)
@@ -190,38 +193,15 @@ const placeOrderRazorpay = async (req, res) => {
 
 const verifyRazorPay = async (req, res) => {
   try {
-    // const {
-    //   orderId,
-    //   userId,
-    //   razorpay_orderID,
-    //   razorpay_paymentID,
-    //   razorpay_signature,
-    // } = req.body;
-    // const sign = razorpay_orderID + "|" + razorpay_paymentID;
-    // const resultSign = crypto
-    //   .createHmac("sha256", process.env.RAZORPAY_SECRET_KEY)
-    //   .update(sign.toString())
-    //   .digest("hex");
-
-    // if (razorpay_signature == resultSign) {
-    //   await orderModel.findByIdAndUpdate(orderId, { payment: true });
-    //   await userModel.findByIdAndUpdate(userId, { cartData: {} });
-    //   res.status(200).json({ message: "Payment verified successfully" });
-    // } else {
-    //   await orderModel.findByIdAndDelete(orderId);
-    //   res.status(500).json({ message: "Payment Failed" });
-    // }
     const { userId, razorpay_orderID } = req.body;
     const orderInfo = await razorPayInstance.orders.fetch(razorpay_orderID);
     if (orderInfo.status === "paid") {
       await orderModel.findByIdAndUpdate(orderInfo.receipt, { payment: true });
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
       res.status(200).json({ message: "Payment verified successfully" });
-    }
-    else{
+    } else {
       await orderModel.findByIdAndDelete(orderId);
     }
-    console.log(orderInfo);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Something went wrong", error: error });
@@ -233,7 +213,6 @@ const userOrderById = async (req, res) => {
   const { userId } = req.body;
   try {
     const orders = await orderModel.find({ userId: userId });
-    console.log(orders);
     res.status(200).json({ message: "Order fetched Successfully", orders });
   } catch (error) {
     console.log(error.message);

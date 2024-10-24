@@ -1,60 +1,17 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
-import Title from "../components/Title";
+import React, { useContext, useEffect } from "react";
+import Title from "./Title";
 import { ShopContext } from "../context/ShopContext";
-// import axios from "axios";
-// import { toast } from "react-toastify";
 
-const Orders = () => {
-  const { token, currency, getOrders, allOrders, navigate } =
-    useContext(ShopContext);
-
-  // const getOrders = async () => {
-  //   try {
-  //     if (!token) {
-  //       return null;
-  //     }
-  //     const orders = await axios.post(
-  //       `${backend_url}/api/order/userOrder`,
-  //       {},
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-  //     if (orders.status === 200) {
-  //       let allOrdersItem = [];
-  //       orders.data.orders.map((order) => {
-  //         order.items.map((item) => {
-  //           item["status"] = order.status;
-  //           item["payment"] = order.payment;
-  //           item["paymentMethod"] = order.paymentMethod;
-  //           item["date"] = order.date;
-  //           item["amount"] = order.amount;
-  //           item["quantity"] = item.quantity || 1;
-  //           allOrdersItem.push(item);
-  //         });
-  //       });
-  //       // console.log(orders);
-  //       setAllOrders(allOrdersItem.reverse());
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //     toast.error(error.message);
-  //   }
-  // };
-
-  useEffect(() => {
-    if (token) {
-      getOrders();
-    }
-  }, [token]);
-  if (!token) {
-    navigate("/login");
-    return null;
-  }
+const OrderCard = ({ allOrders, userData }) => {
+  const { currency } = useContext(ShopContext);
   return (
     <div className="border-t flex flex-col">
       <div className="pb-4">
-        <Title text1={"My"} text2={"Orders"} />
+        <h1 className="text-2xl font-semibold text-gray-700">
+          Hi, {userData.name}
+        </h1>
       </div>
       <div>
         {allOrders ? (
@@ -116,4 +73,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrderCard;

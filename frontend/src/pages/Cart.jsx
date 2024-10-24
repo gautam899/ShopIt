@@ -19,6 +19,7 @@ const Cart = () => {
     addToWishlist,
     getUserCart,
   } = useContext(ShopContext);
+
   const [cartData, setCartData] = useState([]);
   const handleAddWishlist = async (productId, size) => {
     try {
@@ -28,6 +29,12 @@ const Cart = () => {
       toast.error(error.message);
     }
   };
+
+  // useEffect(() => {
+  //   if (token) {
+  //     getUserCart(token); // Fetch the user cart when the token is available
+  //   }
+  // }, [token]);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -46,7 +53,7 @@ const Cart = () => {
       setCartData(tempData);
     }
   }, [cartItem, products]);
-  
+
   return (
     <div className="border-t-2 pt-14">
       <div className="text-2xl mb-3">

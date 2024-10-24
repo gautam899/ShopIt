@@ -10,6 +10,7 @@ const Verify = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
+  
   // A function to verify the stripe payment
   const verifyPayment = async () => {
     try {
@@ -25,6 +26,7 @@ const Verify = () => {
         setCartItem({});
         navigate("/orders");
       } else {
+        console.log("trying to navigate")
         navigate("/cart");
       }
     } catch (error) {

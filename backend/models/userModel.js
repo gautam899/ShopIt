@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    imageURL: { type: [String] },
+    gender: { type: String, required: true },
     cartData: { type: Object, default: {} },
     wishlist: [
       {

@@ -2,7 +2,6 @@ import { v2 as cloudinary } from "cloudinary";
 import productModel from "../models/productModel.js";
 import reviewModel from "../models/reviewModel.js";
 const addProduct = async (req, res) => {
-  console.log("Hi this is the product controller");
   try {
     const {
       name,
@@ -25,13 +24,11 @@ const addProduct = async (req, res) => {
     const images = [image1, image2, image3, image4].filter(
       (item) => item !== undefined
     );
-    // console.log(images);
     let imagesUrl = await Promise.all(
       images.map(async (item) => {
         let result = await cloudinary.uploader.upload(item.path, {
           resource_type: "image",
         });
-        // console.log(result);
         return result.secure_url;
       })
     );
@@ -47,7 +44,6 @@ const addProduct = async (req, res) => {
       data: Date.now(),
     };
 
-    // console.log(imageData);
     const product = new productModel(imageData);
     await product.save();
 
@@ -62,7 +58,6 @@ const listProducts = async (req, res) => {
   try {
     const products = await productModel.find({});
     if (products) {
-      // console.log(products);
       res
         .status(200)
         .json({ products, message: "Products fetched Successfully" });

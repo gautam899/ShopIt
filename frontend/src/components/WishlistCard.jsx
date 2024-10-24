@@ -28,7 +28,7 @@ const WishlistCard = ({ productId, image, name, price, size }) => {
         {currency}
         {price}
       </p>
-      <p className="text-xs py-1">Eligibe for free shipping</p>
+      <p className="text-xs py-1">Eligible for free shipping</p>
       <button
         className="w-full border-2 hover:bg-gray-100 rounded-full py-2 font-semibold dark_button dark:border-0"
         onClick={() => deleteWishlistItem(productId, size)}

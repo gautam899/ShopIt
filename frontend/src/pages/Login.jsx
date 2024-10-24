@@ -9,12 +9,13 @@ import axios from "axios";
 const Login = () => {
   const [currentState, setCurrentState] = useState("Login");
   const [name, setName] = useState("");
+  const [image, setImage] = useState(false);
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("Male");
   const [password, setPassword] = useState("");
   const [type, setType] = useState("password");
   const { setToken, backend_url, navigate } = useContext(ShopContext);
   const handleSubmit = async (e) => {
-    console.log(currentState);
     e.preventDefault();
     if (currentState === "Login") {
       try {
@@ -25,10 +26,11 @@ const Login = () => {
             headers: { "Content-Type": "application/json" },
           }
         );
-
+        console.log(res);
         if (res.status === 200) {
           setToken(res.data.token);
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userId", res.data.userId);
           toast.success("Login Successfull");
           navigate("/");
         } else {
@@ -46,22 +48,25 @@ const Login = () => {
         }
       } catch (error) {
         console.log(error.message);
-        toast.error("Invalid Credentials");
+        toast.error(error.message);
       }
     } else if (currentState === "SignUp") {
       try {
+        const formData = new FormData();
+        formData.append("name", name);
+        image && formData.append("image", image); // Append File object if exists
+
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("gender", gender);
+
         const res = await axios.post(
           `${backend_url}/api/user/register`,
+          formData,
           {
-            name,
-            email,
-            password,
-          },
-          {
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "multipart/form-data" },
           }
         );
-        console.log(res);
         if (res.status === 200) {
           // setToken(res.data.token);
           // localStorage.setItem("token", res.data.token);
@@ -95,6 +100,8 @@ const Login = () => {
       setType("password");
     }
   };
+  
+
   return (
     <div className="flex flex-col-reverse sm:flex-row sm:mt-10">
       <img
@@ -113,15 +120,49 @@ const Login = () => {
           <hr className="h-[2px] bg-black w-11 my-auto" />
         </div>
         {currentState === "SignUp" ? (
-          <input
-            id="name"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-900 outline-none dark_input"
-            required
-          />
+          <div className="flex flex-col gap-3 w-full">
+            <input
+              id="name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-900 outline-none dark_input"
+              required
+            />
+            <label
+              htmlFor="image"
+              className="border border-gray-800 p-1 flex flex-row gap-2 cursor-pointer"
+            >
+              <input
+                onChange={(e) => setImage(e.target.files[0])}
+                type="file"
+                id="image"
+                hidden
+              />
+              <img
+                src={image ? URL.createObjectURL(image) : assets.default_user}
+                className="w-9 cursor-pointer"
+                alt="image"
+              />
+              <p className="text-sm text-gray-700 flex items-center">
+                Upload Image (optional)
+              </p>
+            </label>
+            <select
+              name="gender"
+              value={gender}
+              id=""
+              className="border border-gray-900 px-1 py-2.5 outline-none"
+              onChange={(e) => setGender(e.target.value)}
+              required
+              autoFocus
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
         ) : (
           <></>
         )}

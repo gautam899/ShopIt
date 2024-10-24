@@ -9,24 +9,31 @@ import ThemeBtn from "./ThemeBtn";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(false);
-  const { cartCount, token, setToken, setCartItem, navigate } =
-    useContext(ShopContext);
+  const {
+    cartCount,
+    token,
+    setToken,
+    setCartItem,
+    navigate,
+    userId,
+    handleLogout,
+  } = useContext(ShopContext);
   const { showSearch, setShowSearch } = useContext(ShopContext);
   const [visible, setVisible] = useState(false);
   const handleSearchClick = () => {
     setShowSearch(true);
   };
-  const handleLogout = () => {
-    try {
-      navigate("/login");
-      localStorage.removeItem("token");
-      localStorage.removeItem("cart");
-      setToken("");
-      setCartItem({});
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleLogout = () => {
+  //   try {
+  //     navigate("/login");
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("cart");
+  //     setToken("");
+  //     setCartItem({});
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const location = useLocation();
   useEffect(() => {
     if (location.pathname.includes("collection")) {
@@ -107,27 +114,48 @@ const Navbar = () => {
                 <ul className="flex flex-col gap-2 justify-center text-center">
                   <li
                     className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42]"
-                    onClick={handleLogout}
-                  >
-                    <a>Log Out</a>
-                  </li>
-                  <li
-                    className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42]"
                     onClick={() => navigate("/orders")}
                   >
-                    <a>Your Orders</a>
+                    <a className="flex justify-between px-3">
+                      <img src={assets.cart} alt="" className="w-4" />
+                      Your Orders
+                    </a>
                   </li>
                   <li
                     className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42]"
                     onClick={() => navigate("/cart")}
                   >
-                    <a>Your Wishlist</a>
+                    <a className="flex justify-between px-3">
+                      <img src={assets.love} alt="" className="w-4" />
+                      Your Wishlist
+                    </a>
                   </li>
                   <li
-                    className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42] mb-3"
+                    className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42]"
                     onClick={() => navigate("/cart")}
                   >
-                    <a>Go to Cart</a>
+                    <a className="flex justify-between px-3">
+                      <img src={assets.cart} alt="" className="w-4" />
+                      Go to Cart
+                    </a>
+                  </li>
+                  <li
+                    className="text-sm text-[#444] hover:underline cursor-pointer hover:text-[#f57b42] "
+                    onClick={() => navigate(`/profile`)}
+                  >
+                    <a className="flex justify-between px-3">
+                      <img src={assets.profile} alt="" className="w-4" />
+                      Your profile
+                    </a>
+                  </li>
+                  <li
+                    className="text-sm text-[#444] hover:underline cursor-pointer mb-3 hover:text-[#f57b42]"
+                    onClick={handleLogout}
+                  >
+                    <a className="flex justify-between px-3">
+                      <img src={assets.logout} alt="" className="w-4" />
+                      Logout
+                    </a>
                   </li>
                 </ul>
               </div>

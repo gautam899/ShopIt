@@ -108,4 +108,10 @@ a.active hr {
   .dark .password-icon {
     filter: invert(100%);
   }
+  .logout-icon {
+    filter: invert(0%);
+  }
+  .dark .logout-icon {
+    filter: invert(100%);
+  }
 }

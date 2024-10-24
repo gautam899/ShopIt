@@ -3,8 +3,6 @@ import userModel from "../models/userModel.js";
 const addToWishlistController = async (req, res) => {
   try {
     const { userId, productId, size } = req.body;
-    // console.log(productId);
-    // console.log(size);
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -63,8 +61,6 @@ const fetchWishlist = async (req, res) => {
 const deleteWishlistById = async (req, res) => {
   try {
     const { userId, size } = req.body;
-    console.log(userId);
-    console.log(size);
     const productId = req.params.productId;
     const user = await userModel.findById(userId);
     if (!user) {

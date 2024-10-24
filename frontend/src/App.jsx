@@ -25,6 +25,7 @@ import Privacy from "./pages/Privacy";
 import GoToTop from "./components/GoToTop";
 import Conditions from "./pages/Conditions";
 import VerifyEmail from "./pages/VerifyEmail";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [themeMode, setThemeMode] = useState(() => {
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/create-review/:productId" element={<CreateReview />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/conditions" element={<Conditions />} />
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/reset-password/:secret_token"
             element={<ResetPassword />}

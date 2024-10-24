@@ -8,7 +8,6 @@ const createReview = async (req, res) => {
   try {
     //destructure the req body.
     const { userId, productId, comment, rating } = req.body;
-    // console.log("Received data:", { userId, productId, comment, rating });
     const newReview = new reviewModel({
       user: userId,
       product: productId,

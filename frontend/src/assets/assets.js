@@ -130,6 +130,13 @@ import eye_open from "./eye-open.svg";
 import eye_close from "./eye-close.svg";
 import login_display from "./login_landing.jpg";
 import home_display from "./home_display.jpg";
+import phone from "./phone.svg";
+import email from "./email.svg";
+import default_user from "./default_user.png";
+import profile from "./profile.svg";
+import logout from "./logout.svg";
+import empty_wishlist from "./empty_wishlist.svg";
+import edit from "./edit.svg";
 export const assets = {
   logo,
   hero_img,
@@ -166,6 +173,8 @@ export const assets = {
   eye_close,
   login_display,
   home_display,
+  email,
+  phone,
   shirt1a,
   shirt1b,
   shirt1c,
@@ -206,6 +215,11 @@ export const assets = {
   shirt10b,
   shirt10c,
   shirt10d,
+  default_user,
+  profile,
+  logout,
+  empty_wishlist,
+  edit,
 };
 export const privacy_policy = [
   {

@@ -21,12 +21,8 @@ const Wishlist = ({ token }) => {
           },
         }
       );
-      console.log(response.data.wishlist);
       if (response.status === 200) {
         const wishlist = response.data.wishlist;
-        if (wishlist.length === 0) {
-          toast.info("Your wishlist is empty"); // Inform the user that their wishlist is empty
-        }
         setItems(wishlist);
       } else {
         toast.error("Failed to fetch wishlist");
@@ -39,6 +35,7 @@ const Wishlist = ({ token }) => {
   useEffect(() => {
     fetchWishlist();
   }, [wishlistItems]);
+
 
   return (
     <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 gap-y-2">

@@ -19,7 +19,10 @@ const ShopContextProvider = (props) => {
   const [cartItem, setCartItem] = useState({});
   const [cartCount, setCartCount] = useState(0);
   const [products, setProducts] = useState([]);
+  const [userData, setUserData] = useState({});
   const [wishlistItems, setWishlistItems] = useState([{}]);
+  const [allOrders, setAllOrders] = useState([]);
+  const [items, setItems] = useState([{}]);
 
   const addCartItem = async (itemId, size) => {
     if (!size) {
@@ -37,14 +40,12 @@ const ShopContextProvider = (props) => {
       copyCart[itemId] = {};
       copyCart[itemId][size] = 1;
     }
+
     setCartItem(copyCart);
     localStorage.setItem("cart", JSON.stringify(copyCart));
-    //If we are logged in then we will add the item to the cart
-    if (token) {
-      // console.log(token) //we have the token
-      try {
-        console.log("Sending a post request to the backend");
 
+    if (token) {
+      try {
         const response = await axios.post(
           `${backend_url}/api/cart/add`,
           { itemId, size },
@@ -176,30 +177,6 @@ const ShopContextProvider = (props) => {
     }
   };
 
-  // console.log(wishlistItems);
-  // const getUserWishlist = async (token) => {
-  //   try {
-  //     const response = await axios.post(
-  //       `${backend_url}/api/wishlist/getUserWishlist`,
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     if (response.status === 200) {
-  //       setWishlistItems(response.data.wishlist);
-  //       toast.success("Wishlist fetched successfully");
-  //     } else {
-  //       toast.error("Failed to fetch wishlist");
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //     toast.error("Error fetching the wishlist");
-  //   }
-  // };
-
   const deleteWishlistItem = async (productId, size) => {
     try {
       const response = await axios.delete(
@@ -216,7 +193,7 @@ const ShopContextProvider = (props) => {
         );
         setWishlistItems(updatedWishlist);
         addCartItem(productId, size);
-        toast.success("Product moved to cart successfully");
+        // toast.success("Product moved to cart successfully");
       } else {
         toast.error("Failed to move product to cart");
       }
@@ -250,7 +227,86 @@ const ShopContextProvider = (props) => {
       toast.error("Something went wrong");
     }
   };
-  
+  const handleLogout = () => {
+    try {
+      navigate("/login");
+      localStorage.removeItem("token");
+      localStorage.removeItem("cart");
+      setToken("");
+      setCartItem({});
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const getUserData = async () => {
+    try {
+      const res = await axios.get(`${backend_url}/api/user/getUserData`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.status === 200) {
+        // console.log(res.data.response);
+        setUserData(res.data.response);
+      } else {
+        toast.error("Something Went wrong try again later.");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const getOrders = async () => {
+    try {
+      const orders = await axios.post(
+        `${backend_url}/api/order/userOrder`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (orders.status === 200) {
+        let allOrdersItem = [];
+        orders &&
+          orders.data.orders.map((order) => {
+            order.items.map((item) => {
+              item["status"] = order.status;
+              item["payment"] = order.payment;
+              item["paymentMethod"] = order.paymentMethod;
+              item["date"] = order.date;
+              item["amount"] = order.amount;
+              item["quantity"] = item.quantity || 1;
+              allOrdersItem.push(item);
+            });
+          });
+        // console.log(orders);
+        setAllOrders(allOrdersItem.reverse());
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
+  const fetchWishlist = async () => {
+    try {
+      const response = await axios.post(
+        `${backend_url}/api/wishlist/getUserWishlist`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const wishlist = response.data.wishlist;
+        setItems(wishlist);
+      } else {
+        toast.error("Failed to fetch wishlist");
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error("Error fetching the wishlist");
+    }
+  };
   useEffect(() => {
     updateCartNumber();
   }, [cartItem]);
@@ -258,7 +314,7 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     getProductsData();
   }, []);
-  
+
   useEffect(() => {
     if (!token && localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
@@ -286,11 +342,16 @@ const ShopContextProvider = (props) => {
     setCartItem,
     addToWishlist,
     getUserCart,
-    // getUserWishlist,
     wishlistItems,
     deleteWishlistItem,
     updateWishlistItem,
-    
+    userData,
+    getUserData,
+    handleLogout,
+    getOrders,
+    allOrders,
+    fetchWishlist,
+    items,
   };
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
