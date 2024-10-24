@@ -351,15 +351,14 @@ const updateProfile = async (req, res) => {
     let imageURL;
     if (req.files && req.files.image) {
       const image = req.files.image;
-      try {
-        const cloudinaryResult = await cloudinary.uploader.upload(image.path, {
-          resource_type: "image",
-        });
-        imageURL = cloudinaryResult.secure_url;
-      } catch (error) {
-        console.error("Error uploading image to Cloudinary:", error);
-        return res.status(500).json({ message: "Image upload failed" });
-      }
+      imageURL = await Promise.all(
+        image.map(async (img) => {
+          let result = await cloudinary.uploader.upload(img.path, {
+            resource_type: "image",
+          });
+          return result.secure_url;
+        })
+      );
     } else {
       imageURL = user.imageURL;
     }
