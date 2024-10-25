@@ -22,6 +22,7 @@ ShopIt is a full-stack application designed to transform your online shopping ex
 7. Customized orders page where the user can see their orders or check the status. The track order feature is not available.
 8. Personalized wishlist user. Users can add or remove items from the wishlist.
 9. Light and Dark mode toggle using Tailwind CSS.
+10. Custom Profile Page with a seamless edit profile feature.
 
 ### Admin:
 1. Add products and delete products from the database.
