@@ -40,7 +40,7 @@ const ForgotPassword = () => {
         required
       />
 
-      <button className="py-2 bg-[#39ac73] text-center w-full text-white text-xl font-medium tracking-wide">
+      <button className="py-2 bg-green-700 hover:bg-green-900  text-center w-full text-white text-xl font-medium tracking-wide">
         Request reset Link
       </button>
     </form>
