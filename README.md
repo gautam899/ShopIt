@@ -31,6 +31,7 @@ ShopIt is a full-stack application designed to transform your online shopping ex
 ### Security:
 1. Email verification before registration.
 2. Forgot password functionality implemented using nodemailer.
+3. Edit Profile info like image, name, and gender.
 
 # Setup
 
