@@ -50,6 +50,9 @@ a.active hr {
   .dark_input {
     @apply dark:border ;
   }
+  .dark_hover{
+    @apply dark:hover:bg-red-700;
+  }
   .dark_pay {
     @apply dark:bg-white dark:text-black;
   }

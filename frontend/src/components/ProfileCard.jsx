@@ -20,7 +20,7 @@ const ProfileCard = ({ userData }) => {
               My Profile
             </p> */}
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold">My Profile</h1>
+              <h1 className="text-2xl font-bold dark_head">My <span className="dark_main">Profile</span></h1>
               <hr className="w-[50px] h-[2px] bg-black" />
             </div>
             <button
@@ -32,7 +32,7 @@ const ProfileCard = ({ userData }) => {
           </div>
           <hr className="mt-2 h-[1.5px] bg-gray-500" />
           <div className="border sm:px-4 px-0">
-            <div className="flex justify-center py-2 bg-gray-400">
+            <div className="flex justify-center py-2">
               <img
                 src={userData.imageURL}
                 alt=""
@@ -40,35 +40,35 @@ const ProfileCard = ({ userData }) => {
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-x-4 py-4">
-              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0">
+              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0 dark_head">
                 Full Name:{" "}
               </p>
-              <p className="w-full lg:w-[340px] text-lg font-semibold text-gray-600">
+              <p className="w-full dark_text lg:w-[340px] text-lg font-semibold text-gray-600">
                 {userData.name}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-x-4 py-4">
-              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0">
+              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0 dark_head">
                 Email Id:{" "}
               </p>
-              <p className="w-full lg:w-[340px] text-lg font-semibold text-gray-600">
+              <p className="w-full dark_text lg:w-[340px] text-lg font-semibold text-gray-600">
                 {userData.email}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-x-4 py-4">
-              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0">
+              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0 dark_head">
                 Gender:{" "}
               </p>
-              <p className="w-full lg:w-[340px] text-lg font-semibold text-gray-600">
+              <p className="w-full lg:w-[340px] dark_text text-lg font-semibold text-gray-600">
                 {userData.gender}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-x-4 py-4">
-              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0">
+              <p className="w-[140px] text-xl font-semibold md:mb-2 mb-0 dark_head">
                 Registerd At:{" "}
               </p>
-              <p className="w-full lg:w-[340px] text-lg font-semibold text-gray-600">
+              <p className="w-full lg:w-[340px] text-lg font-semibold text-gray-600 dark_text">
                 {FormatDate(userData.createdAt)}
               </p>
             </div>

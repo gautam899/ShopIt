@@ -8,8 +8,8 @@ const OrderCard = ({ allOrders, userData }) => {
   const { currency } = useContext(ShopContext);
   return (
     <div className="border-t flex flex-col">
-      <div className="pb-4">
-        <h1 className="text-2xl font-semibold text-gray-700">
+      <div className="pb-4 pt-4">
+        <h1 className="text-2xl font-semibold text-gray-700 dark_head">
           Hi, {userData.name}
         </h1>
       </div>

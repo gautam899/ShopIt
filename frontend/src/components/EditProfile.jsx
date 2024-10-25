@@ -34,16 +34,15 @@ const EditProfile = ({ userData }) => {
   return (
     <div>
       <div className="flex items-center gap-3">
-        <h1 className="text-2xl font-bold">Edit Profile</h1>
-        <hr className="w-[50px] h-[2px] bg-black" />
+        <h1 className="text-2xl font-bold dark_head">
+          Edit <span className="dark_main">Profile</span>
+        </h1>
+        {/* <hr className="w-[50px] h-[2px] bg-black" /> */}
       </div>
 
       <form action="submit" onSubmit={handelSubmit}>
-        <div
-          className="border-t-2 border-gray-300 pt-5 justify-center items-center
-          w-full"
-        >
-          <label htmlFor="image">
+        <div className="border-t-2 border-gray-300 pt-5 w-[150px] justify-center items-center">
+          <label htmlFor="image" className="w-[100px] h-[100px]">
             <input
               type="file"
               id="image"
@@ -55,16 +54,12 @@ const EditProfile = ({ userData }) => {
               alt=""
               className="w-[100px] h-[100px] rounded-full object-cover"
             />
-            {/* <img
-              src={assets.edit}
-              alt=""
-              className="w-5 absolute top-2  mx-auto"
-            /> */}
           </label>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4 gap-y-5  py-6 px-0 sm:px-4">
           <div className="flex flex-col gap-1">
-            <p className="text-xl font-semibold text-gray-800 flex items-center">
+            <p className="text-xl font-semibold text-gray-800 flex items-center dark_text">
               Full Name <span className="text-red-500">*</span>:
             </p>
             <input
@@ -78,7 +73,7 @@ const EditProfile = ({ userData }) => {
             />
           </div>
           <div className="flex flex-col  gap-1">
-            <p className="text-xl font-semibold text-gray-800 flex items-center">
+            <p className="text-xl font-semibold text-gray-800 flex items-center dark_text">
               Email Address <span className="text-red-500">*</span>:
             </p>
             <input
@@ -92,7 +87,7 @@ const EditProfile = ({ userData }) => {
             />
           </div>
           <div className="flex flex-col  gap-1">
-            <p className="text-xl font-semibold text-gray-800 flex items-center">
+            <p className="text-xl font-semibold text-gray-800 flex items-center dark_text">
               Gender <span className="text-red-500">*</span>:
             </p>
             <select
