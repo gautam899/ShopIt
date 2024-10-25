@@ -106,6 +106,8 @@ The URL's can be adjusted as per your preference.
 
 # Screenshots
 
+![image](https://github.com/user-attachments/assets/59387bb5-f836-4abc-9206-6458e0d5cb4b)
+
 ![image](https://github.com/user-attachments/assets/bbe5863f-9815-4793-9408-6828955441fe)
 
 ![image](https://github.com/user-attachments/assets/b5cadbc9-2a12-428c-8fe9-ed5b0589d0ec)
